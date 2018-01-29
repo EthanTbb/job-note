@@ -1,0 +1,6 @@
+############## 上架 app store 文档 ##############
+https://www.jianshu.com/p/efda63c04055
+
+############## 内购文档 ##############
+https://www.cnblogs.com/taoxu/p/7725660.html 
+http://www.cnblogs.com/taoxu/p/7729693.html
