@@ -1,0 +1,33 @@
+官网下载最新的mysql-5.7.180winx64.zip解压缩后根目录下.ini文件不再包含在分发包中,并且data文件夹也需要手动初始化
+手动配置过程
+以管理员身份启动cmd控制台,切换到mysql的bin目录下执行：mysqld --initialize-insecure,作用是初始化mysql不随机生成密码
+随机密码记不住是很蛋疼的一件事
+因为没有.ini文件了,所以可以用mysqld --verbose --help查看配置
+初始化密码后就可以生成服务了mysqld -install
+启动服务net start mysql
+删除服务mysqld remove
+
+修改root用户密码
+mysql> update user set authentication_string='tbbEthan' where user='root';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+改表
+mysql> update user set host='%' where user='root';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+授权，使root用户使用tbbEthan密码从任何主机链接到本机mysql服务器
+mysql> grant all privileges on *.* to 'root'@'%' identified by 'tbbEthan' with grant option;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+赋予任何主机访问的权限
+mysql> grant all privileges on *.* to 'root'@'%' with grant option;
+Query OK, 0 rows affected (0.00 sec)
+
+使修改立即生效
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit
+Bye

@@ -1,0 +1,20 @@
+虚拟机开启后点击上方的 设备->共享文件夹->共享文件夹->固定分配 添加共享的windows文件夹路径
+
+设置好以后,返回linux 用 lsscsi 命令查看是否有 /dev/sr0 这个,如果有的话说明挂载成功
+
+接下来 mkdir /media/cdrom 创建一个这样的目录
+(我实验了一下,最终的共享文件会自动生成在 /media 目录下 以 sf_ + windows文件夹名 的命名方式作为共享目录保存)
+
+mount /dev/sr0 /media/cdrom
+(/media/cdrom 挂载到这里的文件在重启后会自动消失)
+
+安装VBoxLinuxAdditons.run依赖功能 yum install gcc kernel-devel kernel-headers dkms make bzip2
+
+更新到最新源 yum update
+
+安装增加VBoxLinuxAdditons.run sh ./VBoxLinuxAdditons.run
+
+都执行完了共享目录应该就设置好了
+
+
+mount | grep vboxsf 查询是否能够挂载vboxsf类型的设备
