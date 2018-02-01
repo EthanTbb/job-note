@@ -1,0 +1,24 @@
+###################### 苹果内购客户端代码 ######################
+
+将 PaymentViewController.h 和 PaymentViewController.mm 添加到项目xcode工程里, 与AppController同级目录
+
+在 AppController.mm 文件里添加Charge这个方法
++ (void)Charge:(NSDictionary *) dict{
+    PaymentViewController *s_sharedAppController = [PaymentViewController new];
+    [s_sharedAppController applicationPayRequest:dict];
+}
+
+lua 里面调用 oc 的 Charge 方法即可, cocos2d-x js 同理应该也是能实现苹果内购
+local luaoc = require "cocos.cocos2d.luaoc"                                                                                                                      
+local BRIDGE_CLASS = "AppController" 
+function Bridge_ios.requestProductData(productId, callback)                                                                                                       
+    --productId价格   callback回调                                                                                                                 
+    local params = {}                                                                                                                                            
+    params["productId"] = productId                                                                                                                               
+    params["callback"] = callback                                                                                                                                
+    local ok,ret = luaoc.callStaticMethod(BRIDGE_CLASS,"Charge",params)                                                                                          
+    if not ok then                                                                                                                                               
+        -- 返回值                                                                                                                                                
+        print("luaj error:"..ret)                                                                                                                                
+    end                                                                                                                                                          
+end 
