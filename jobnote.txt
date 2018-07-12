@@ -7,6 +7,11 @@ git worktree prune										删除worktree子分支文件夹后执行
 git log --author=liquan --oneline     					查看自己的git提交记录
 git log --pretty=oneline 文件名							查看某个文件的历史修改记录,所有的
 
+################### adb ###################
+adb connect 127.0.0.1:62001	链接夜神模拟器
+adb connect 127.0.0.1:5037	链接安卓设备
+adb logcat | grep 包名		输出指定包名的log
+
 ################### ssh 远程登陆终端乱码修改 ###################
 192.168.1.32 mac ssh登陆:ssh admin@192.168.1.32 密码###abc
 解决ssh登陆mac终端显示乱码(本机修改)
@@ -15,7 +20,8 @@ Host *
 SendEnv LC_* LANG
 source .bash_profile	使配置立即生效
 
-######################### 垃圾清理思路 #########################
+################### 垃圾资源清理思路 #########################
+对于cocos2d-x项目来说这是个头疼的问题，creator已经有插件帮助清理
 简单除暴的去删除认为是无用的资源绝对是错误的做法
 目前各种旧版资源和新增资源混杂在一起，要做清理工作比较困难，很可能会把一些有用
 的资源当作垃圾清理掉。一个比较靠谱的方法是，客户端加载资源时输出资源路径，尽可
@@ -24,28 +30,22 @@ source .bash_profile	使配置立即生效
 把客户端所有的功能都跑一遍也可能会有遗漏，因此需要在引擎加载纹理的地方做下兼容
 ，当加载到不存在的资源时，加载一张默认的纹理，同时输出资源丢失的日志。
 
-######################### 网狐荣耀二开 #########################
+################### 网狐荣耀二开 #########################
 网狐荣耀客户端VS工程启动应用需要附带的参数
 -workdir $(ProjectDir)../../../client/
 
-################# ios开发者账号添加新的测试设备 #################
+################### ios开发者账号添加新的测试设备 #################
 XCode 9，添加新的设备UUID后，如果是Automatically manage signing，需做如下操作：
 1、到目录~/Library/MobileDevice/Provisioning\ Profiles/，删除所有文件
 2、XCode > Preferences > Accounts，选择相应的Team
 3、点击Download Manual Profiles ​​​​
 
-##################### android打包查看key信息 #####################
+################### android打包查看key信息 #####################
 keytool --list -v --keystore .../.android/debug.keystore	查看keystore的信息
 unzip xxx.apk META-INF/CERT.RSA								提取 apk 的签名信息
 keytool -printcert -file META-INF/CERT.RSA					查看apk提取出来的签名信息
 
-wmdzwp
-a0fcc791d9f79006e08046d0c5c064a9	新
-MD5:  A0:FC:C7:91:D9:F7:90:06:E0:80:46:D0:C5:C0:64:A9	新
-SHA1: C8:EA:FA:71:27:4B:0F:0E:9A:FB:E7:E9:1A:96:80:50:48:E2:5A:8E	新
-SHA256: 62:E2:CC:E6:B5:4C:41:7E:31:0B:19:9C:26:75:CA:96:10:1E:30:B9:E0:B5:55:C3:6A:DC:F8:7D:76:77:E3:D8	新
-
-##################### vim配置TypeScript文本高亮 #####################
+################### vim配置TypeScript文本高亮 #####################
 从github上面clone ts配置文件
 git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim
 ~/.vim/vimrc 最后添加此段代码
@@ -54,7 +54,30 @@ if !exists("g:ycm_semantic_triggers")
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
-##################### tmux常用操作 #####################
+################### tmux常用操作 #####################
 # 关闭指定会话					tmux kill-session -t session-name
 # 关闭除指定会话外的所有会话	tmux kill-session -a -t session-name
 # 销毁所有会话并停止tmux		tmux kill-server
+################### cocos2d-x 历史工具 ###################
+https://github.com/fusijie/Cocos-Resource
+################### lua 官方api ###################
+https://www.lua.org/manual/5.1/
+################### lua 中文学习文档 ###################
+https://learnxinyminutes.com/docs/zh-cn/lua-cn/
+################### app store 上架流程 ###################
+https://www.cnblogs.com/zengchao/p/6013690.html
+################### ios 配置网页下载ipa ###################
+https://www.jianshu.com/p/2e5dfaa63349
+################### Cmd Markdown 编辑阅读器 ###################
+https://www.zybuluo.com/mdeditor
+################### 每天一本编程书，每天进步一点点 ###################
+https://salttiger.com/
+################### Tmux 速成教程：技巧和调整 ###################
+http://blog.jobbole.com/87584/
+http://blog.jobbole.com/87278/
+################### github for windows ###################
+https://desktop.github.com/
+
+https://gitee.com/liyonghelpme/MobaFuWuQi
+####小驴跳一跳
+https://blog.csdn.net/qq_26902237/article/details/83656277
